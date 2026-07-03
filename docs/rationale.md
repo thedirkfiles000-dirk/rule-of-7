@@ -13,6 +13,24 @@ This optimization criterion — reduce uncertainty about future generations — 
 
 ---
 
+## The Thermodynamic Frame
+
+Two frameworks illuminate why the format works the way it does. Claude Shannon formalized information theory in 1948: information content is inversely proportional to probability — a surprising symbol carries more information than a predictable one. Ludwig Boltzmann established that physical systems tend toward disorder over time unless structured initial conditions resist that drift.
+
+Both frameworks apply to a bot prompt running forward through a long conversation.
+
+**The prompt is a channel with finite capacity.** Shannon's efficient coding theory holds that an optimal encoding minimizes redundancy and maximizes information per symbol. Every token spent is channel capacity consumed. The question is how much uncertainty each token actually reduces. A redundant token — "she is guarded" appearing in traits, behavior rules, and implied by a trigger — carries near-zero information by the third instance. The model's probability distribution over her behavior was already constrained. You've consumed capacity without reducing uncertainty. An inefficient code in Shannon's terms.
+
+**The conversation is a thermodynamic system running toward disorder.** Context pressure builds as the conversation extends. Weaker models drop detail. Surrounding narrative competes with established character facts. The prompt's initial conditions degrade — not because the model fails, but because entropy increases in any system running forward in time without energy input to maintain structure. A bloated bot with redundant encoding and adjectival personality lists is a high-entropy initial state pretending to be organized. It looks structured to the author. Thermodynamically it's already halfway to noise before the first user message arrives.
+
+**The apparent paradox: high-entropy symbols in a low-entropy system.** The two frameworks use entropy differently and the distinction matters. Shannon entropy measures information content per symbol — high is good, meaning the symbol is distinctive and load-bearing rather than redundant. Thermodynamic entropy measures disorder of the system as a whole — low is good, meaning the system has structure worth preserving. These are not contradictory. A low-entropy initial state — a well-ordered system — is built precisely by packing it with high-entropy symbols in the Shannon sense. No redundancy, no filler, no synonymous traits stacked in a list. Each symbol doing maximal work.
+
+The analogy that resolves it: a crystal is thermodynamically low-entropy — highly ordered — because every atom is in a precise, non-redundant position. Each atom is doing exactly the work its position requires. A Rule of 7 bot is the crystal. "A shop that smells like sandalwood and quiet failure" is an atom in exactly the right position — Shannon-high-entropy (distinctive, surprising, far from the average shop description) and thermodynamically load-bearing (resisting drift because it was never close to the noise floor).
+
+**The engineering statement:** Rule of 7 is a method for minimizing the thermodynamic entropy of the initial conditions so the system resists drift under load. A tight, causally coherent, non-redundant prompt is a low-entropy initial state. It runs forward in time — the conversation extends, context pressure builds, memory degrades — and the high-Shannon-entropy symbols hold because they remain distinctive against the noise of surrounding context. The Elena rewrite wasn't just smaller. It was more thermodynamically stable.
+
+---
+
 ## Why Prose Outperforms Schema
 
 Traditional bot schemas inherit their structure from software engineering: labeled fields, nested objects, separated data and code. That structure exists because computers are literal parsers — they need labels to know what data means.
@@ -41,19 +59,23 @@ Personality is not a slot because it's distributed. Traits, motivations, fears, 
 
 ## Why Sentence Discipline Matters
 
-The two-job rule — every sentence does at least two things simultaneously — is not primarily a token efficiency measure. It's an attention efficiency measure.
+The two-job rule — every sentence does at least two things simultaneously — is not primarily a token efficiency measure. It is an attention efficiency measure and a Shannon efficiency measure simultaneously.
 
-Consider the difference between "Sarah is shy" and "Sarah laughs too quickly, then apologizes for laughing." The second sentence teaches personality, dialogue rhythm, emotional state, insecurity, and likely future behavior simultaneously. Every future generation the LLM produces for Sarah is more constrained by the second sentence than by the first, at comparable token cost.
+Consider the difference between "Sarah is shy" and "Sarah laughs too quickly, then apologizes for laughing." The second sentence teaches personality, dialogue rhythm, emotional state, insecurity, and likely future behavior simultaneously. It is Shannon-high-entropy: surprising relative to the base rate of character descriptions, carrying more information per token than the predictable adjectival form. Every future generation the LLM produces for Sarah is more constrained by the second sentence than by the first. The system's initial conditions are more ordered — lower thermodynamic entropy — because each token is doing more work.
 
-The underlying principle: every sentence should increase predictive power. A sentence doing only one job from the taxonomy (establish, characterize, motivate, orient, load subtext, trigger, compress) is a candidate for merger with a sentence that needed it.
+The underlying principle: every sentence should increase predictive power. A sentence doing only one job from the taxonomy (establish, characterize, motivate, orient, load subtext, trigger, compress) is redundant capacity — channel bandwidth consumed without proportional uncertainty reduction.
 
 ---
 
 ## Why Distinctive Language Persists
 
-The observation that evocative language outlasts accurate language in long conversations is consistent with how attention mechanisms weight semantically salient content. "Smells like sandalwood and quiet failure" occupies a more unique region of the embedding space than "small declining shop." Distinctive phrases are more retrievable under the context pressure that produces drift because they are less likely to be competed away by surrounding narrative detail.
+The observation that evocative language outlasts accurate language in long conversations follows directly from the thermodynamic frame.
 
-This is also why metaphor works. "She feels his intention like weather" is not ambiguous to the LLM — it's processed as emotional information because the LLM was trained on writing that uses exactly this kind of compression constantly. Literal interpretation is not the default. Comprehension is.
+A low-entropy description — "small sad shop" — sits close to the base rate of similar descriptions in the training corpus. Under context pressure, it blends back into the surrounding probability distribution. It has few distinguishing features to anchor it against the noise of accumulating narrative. It drifts because it was never far from drift.
+
+A high-Shannon-entropy description — "smells like sandalwood and quiet failure" — occupies a distinctive region of the embedding space. It remains salient under context pressure because it remains surprising relative to what surrounds it. It resists thermodynamic drift because its initial information content was high enough to stay above the noise floor as the system degrades.
+
+This is also why metaphor works. "She feels his intention like weather" is not ambiguous to the LLM — it's processed as emotional information because the model was trained on writing that uses exactly this compression constantly. The metaphor is high-entropy in Shannon's sense (distinctive, specific, non-redundant) and thermodynamically stable for the same reason. Literal interpretation is not the LLM's default. Comprehension is.
 
 ---
 
@@ -61,27 +83,27 @@ This is also why metaphor works. "She feels his intention like weather" is not a
 
 The format uses prose for almost everything and enumerated lists for Triggers. This is deliberate.
 
-Prose encodes character. Triggers encode mechanics. The distinction matters because the failure modes are different. Character prose that's slightly imprecise still produces recognizable behavior — the LLM extrapolates correctly from a coherent character prior. Mechanical triggers that are imprecise allow the LLM's improv instinct to substitute plausible alternatives. A psychic whose vision is described atmospherically will see something plausible. A psychic whose vision is named explicitly and marked as non-substitutable will see what the author intended.
+Prose encodes character. Triggers encode mechanics. The distinction matters because the failure modes are different. Character prose that's slightly imprecise still produces recognizable behavior — the LLM extrapolates correctly from a coherent character prior. Mechanical triggers that are imprecise allow the LLM's improv instinct to substitute plausible alternatives. A psychic whose vision is described atmospherically will see something plausible and character-consistent. A psychic whose vision is named explicitly and marked as non-substitutable will see what the author intended.
 
-Plot-critical events need precision language, not evocative language. The format respects that distinction by keeping Triggers structural while everything else goes prose.
+In thermodynamic terms: character facts have a large attractor basin — small perturbations return to the correct behavior because the Engine and Wound establish strong priors. Plot-critical mechanics have a small attractor basin — small perturbations produce entirely different plot events. Triggers provide the additional structure that widens the attractor basin for plot-critical events to the point where the intended outcome becomes statistically dominant.
 
 ---
 
 ## Why Prior Contact Closure Is Mandatory
 
-LLMs do not tolerate information vacuums. An underspecified relationship history will be filled with plausible invented content — not because the model fails, but because it succeeds at completing an underspecified context. The model is doing exactly what it was trained to do.
+LLMs do not tolerate information vacuums. An underspecified relationship history will be filled with plausible invented content — not because the model fails, but because it succeeds at completing an underspecified context. The model is doing exactly what it was trained to do: reduce uncertainty by predicting the most probable continuation.
 
-Prior contact closure — explicit language about what has and hasn't happened — doesn't prevent invention. It makes the invention space too small to matter. "No prior arrangements exist between them" is not filler. It is a constraint on the generation space that closes a failure mode before it opens.
+Prior contact closure — explicit language about what has and hasn't happened — doesn't prevent invention. It makes the invention space too small to matter. "No prior arrangements exist between them" is not filler. It is a low-entropy constraint on the generation space that closes a failure mode before it opens. The vacuum is eliminated before the system has a chance to fill it with noise.
 
 ---
 
 ## The Greeting and Intro Problem
 
-Two platform-specific findings that are not widely documented:
+Two platform-specific findings on PolyBuzz that are not widely documented:
 
-The greeting establishes authoritative present state. If the Background places the story three weeks into a relationship but the greeting performs a first meeting, the LLM resolves the conflict in favor of the greeting and invents prior history to fill the gap. Background and greeting must agree on what has happened.
+The greeting establishes authoritative present state. If the Background places the story three weeks into a relationship but the greeting performs a first meeting, the LLM resolves the conflict in favor of the greeting and invents prior history to fill the gap. Background and greeting must agree on what has happened. Conflicting signals are a high-entropy initial condition — the system has two attractors and no mechanism for choosing between them. The greeting wins because it arrives last in the prompt and carries recency weight.
 
-The Intro field on PolyBuzz is read by the LLM, not just displayed to browsing users. It functions as an unprompted mini-premise before the Background loads. A carelessly written Intro can establish a false prior state before the conversation begins. Intros require dual-audience authoring: compelling for human browsers, precise for LLM orientation.
+The Intro field on PolyBuzz is read by the LLM, not just displayed to browsing users. It functions as an unprompted mini-premise before the Background loads. A carelessly written Intro can establish a false prior state before the conversation begins. Intros require dual-audience authoring: compelling for human browsers, precise for LLM orientation. An Intro that contradicts the Background adds entropy to the system before the first user message.
 
 ---
 
@@ -91,7 +113,7 @@ The Intro field on PolyBuzz is read by the LLM, not just displayed to browsing u
 
 **Dialog Examples budget isolation** is a PolyBuzz-specific architectural feature. On platforms without a separate Dialog Examples field, voice calibration examples must come from the Background budget or be omitted, which changes the density math significantly.
 
-**State management** is the most significant open problem for long-form roleplay that Rule of 7 does not address. As conversations extend, mutable facts — what the user has said, what promises have been made, what has changed — drift faster than static characterization. The format handles immutable characterization well. It does not handle mutable simulation state. A complementary state management format is the logical next development.
+**State management** is the most significant open problem for long-form roleplay that Rule of 7 does not address. As conversations extend, mutable facts — what the user has said, what promises have been made, what has changed — drift faster than static characterization. The format handles immutable characterization well. It does not handle mutable simulation state. In thermodynamic terms: Rule of 7 establishes low-entropy initial conditions. It does not provide a mechanism for re-injecting structure as the system degrades over time. A complementary state management format is the logical next development.
 
 **Model variance** is real. The format was developed and tested against models available on PolyBuzz. Different inference endpoints, quantization levels, and context window sizes will affect how well the format's heuristics hold.
 
