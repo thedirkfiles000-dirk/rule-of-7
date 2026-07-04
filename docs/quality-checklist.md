@@ -35,6 +35,18 @@ Does this sentence:
 
 ---
 
+## Quick Test — The Plausible Wrong Version
+
+Before running the full checklist, apply this to any sentence that feels soft:
+
+> **What would a plausible wrong version of this look like?**
+
+If you can easily imagine one — an alternative the LLM might generate that is character-consistent but not what you intended — the sentence has an invention space that needs closing. If the only reasonable interpretation is the intended one, it's closed.
+
+This test is faster than the full checklist mid-draft. Use it as a first pass. Pull out the full checklist when something feels soft but you can't immediately say why.
+
+---
+
 ## Failure Modes This Checklist Catches
 
 - Adjectival personality lists that label rather than demonstrate (fails B, C)
@@ -45,3 +57,5 @@ Does this sentence:
 - Perception gaps left open in first-person-limited bots, allowing the LLM to invent a third version of reality (fails I)
 - Plot-critical events left underspecified, allowing plausible but wrong alternatives (fails J)
 - Character blocks that open with name, age, or hair color instead of the core contradiction (fails K)
+- Wound and Dynamic sitting adjacent without a causal bridge, forcing the LLM to infer the connection rather than follow it (fails A, D)
+- Triggers that instruct the LLM to reveal something without specifying what — "she's a little honest about it" leaves the content of honesty as an open invention space (fails G, J)
