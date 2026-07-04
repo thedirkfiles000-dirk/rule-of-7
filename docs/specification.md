@@ -95,6 +95,16 @@ Cast dynamics should be two-directional. Describing only the lead character's at
 
 In first-person-limited bots, Cast entries are always filtered through the lead character's perception — they are not objective facts. Where the gap between what the lead believes and what is actually true is meaningful, encode both layers explicitly: state the lead's read, then add what they don't fully clock. This closes invention space that would otherwise be filled with plausible but unsourced alternatives. Not every cohort figure needs two layers — apply where the gap matters or where LLM improv could produce friction with established characterization.
 
+**Cast entry tiers — not all supporting characters are the same kind of thing:**
+
+*Full character* — warrants all seven slots and contributes independently to the Arc. Has their own revelation, their own wound, their own trajectory. Use when the character drives or significantly shapes plot rather than just responding to it.
+
+*Cohort* — three to eight sentences in the Cast section. Has a behavioral anchor, meaningful responses, and some interiority — but follows the lead character rather than driving independently. The right tier for characters who matter to the scene without owning it. A well-written cohort entry can carry ambiguity, mixed motivation, and specific trigger responses without needing full slot structure. This is often more efficient than a compressed secondary character because prose handles complexity better than partially-filled schema.
+
+*Extra* — one sentence. Functional presence, can speak, exists to make the world feel populated. The bartender who called the cab. The desk sergeant. No interiority required or useful.
+
+When deciding which tier a character warrants, ask: does this character have their own arc, or do they serve someone else's? If the answer is "they serve someone else's arc but have real complexity," cohort with a rich entry is almost always the right choice over a compressed full character.
+
 **Triggers** — Global conditional behaviors as a bulleted list using arrow notation: `condition → response`. The one deliberately structured section in the format. Plot-critical events — especially inciting incidents that must fire in a specific way — are made statistically dominant here by naming them explicitly and stating that alternative continuations are not intended. This is where the LLM's improv instinct gets constrained when it matters most.
 
 **Arc** — Three beats: Early, Mid, Late. Prose descriptions of how the scene and relationships evolve across the conversation. Gives the LLM a trajectory without over-specifying events.
@@ -169,6 +179,18 @@ A full four-register set per character plus inter-character exchanges for a two-
 
 ## Critical Authoring Rules
 
+**Start with dramatic truth, not slot structure.** The most common failure in bot authoring — in any format — is filling fields before identifying what the scene is actually about. A complete-looking document can fundamentally misrepresent its own bot if the author hasn't first answered: what is this scene really about, what does each character actually want, and what is the user walking into? The format enforces good answers to these questions, but only if the author asks them first. Write the World section last if necessary — but know the dramatic truth before writing anything.
+
+**The Intro and Greeting have different audiences.** The Intro is read by a human browsing a list of bots. Its job is to create curiosity and imply the dynamic without spoiling it. The Greeting is read by the LLM and the user inside the fiction. Its job is to establish present state and give the user something to respond to immediately. These are different jobs for different audiences. An Intro that does scene-setting competes with the Greeting. A Greeting that reads like a pitch has confused its audience. Keep them separate: Intro sells the experience, Greeting launches it. On mobile, the Intro should fit in a single glance and the Greeting should fit on one screen without scrolling — the user should be able to read both and type their first response without scrolling once.
+
+**The Intro must not assign emotional states to the user.** The bot can describe what is observable — behavior, expression, situation — but never the user's internal emotional response to it. "Emily catches your eye" is valid. "Emily makes your heart skip" is not. The user owns their emotional state. If emotional implication is needed, encode it in the situation and let the user supply the feeling. This applies to the Greeting as well: action beats describe what happens, not how the user feels about it.
+
+**The Intro and Greeting must not contradict each other.** If the Intro establishes who caused an inciting incident, the Greeting must agree. Conflicting signals create a high-entropy initial state with two attractors and no mechanism for choosing between them. The Greeting wins on recency, but the confusion is already done. The safest Intro makes no scene-specific claims the Greeting could contradict.
+
+**Do not use format taxonomy as prompt language.** Words like "cohort," "trigger," "slot," and "arc" are authoring vocabulary — they describe the format, not the fiction. They do not belong inside the Background field. The LLM doesn't need the author's taxonomy; it needs characterization. "Wendy (cohort)" in a Cast entry tells the LLM nothing useful and wastes tokens on a label that serves only the author.
+
+**Ambiguity is a valid design choice — encode it explicitly.** The spec's emphasis on closing invention spaces does not mean every character must have clean, resolvable motivations. Some characters are more interesting because their motivations are genuinely mixed — they want two things that may conflict, and neither fully explains their behavior. This kind of ambiguity should be encoded deliberately: state both things as true simultaneously and let the prose hold the tension. "She tells herself the two things are separate — what she feels and what she wants professionally — and she's mostly convinced" is closed invention space that produces open dramatic space. The LLM knows what Wendy's ambiguity consists of; the user gets to decide what it means.
+
 **The Intro field is a live LLM input.** Testing on PolyBuzz confirms the Intro is read by the LLM, not just displayed to browsing users. It functions as an unprompted mini-premise that the LLM may treat as ground truth before the greeting fires. Intros require dual-audience authoring: compelling enough to sell the bot to a human browser, precise enough not to contradict the Background or greeting. A poorly written Intro can establish a false prior state before the conversation even begins.
 
 **The greeting establishes current state.** The LLM treats the greeting as the authoritative present moment. If the Background establishes prior history but the greeting performs a first meeting, the LLM resolves the conflict in favor of the greeting and invents history to fill the gap. The greeting and Background must agree on what has and hasn't happened.
@@ -193,7 +215,8 @@ Prior contact closure applies to cohort figures as well as the user relationship
 | Lead character, full seven slots | 1,800 — 2,500 |
 | Secondary character, full seven slots | 1,200 — 1,800 |
 | Secondary character, compressed (4 slots) | 700 — 1,000 |
-| Cohort entry in Cast section | 100 — 200 |
+| Cohort entry in Cast section | 300 — 600 |
+| Extra entry in Cast section | 50 — 100 |
 | Background budget (PolyBuzz) | 10,000 |
 | Safe working target | ≤ 9,960 |
 | Dialog Examples budget (separate) | 10,000 |
