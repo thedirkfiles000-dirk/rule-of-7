@@ -61,6 +61,8 @@ versus
 
 The second teaches personality, dialogue rhythm, emotional state, insecurity, and likely future behavior in one sentence. Every future generation the LLM produces for Sarah is now more constrained. That's the target.
 
+**A note on scope:** the two-job rule is a discipline applied at the level of the slot and the draft overall — not a tax on every individual detail. Some facts exist for completeness, visual grounding, or platform-specific requirements rather than characterization. The question to ask is whether the slot as a whole is earning its place. A sentence doing only one job is a candidate for compression; it is not automatically a violation. Apply the rule with judgment, not rigidity.
+
 **Additional discipline rules:**
 
 - Causal compression: encode fact + motivation + implication in a single sentence where possible. "Her father's abuse left her reading kindness as a setup" does more than "she distrusts men" and "her father was abusive" combined.
@@ -87,6 +89,12 @@ These surround and support the character content. They are not part of the seven
 
 **Cast** — Cohort-level characters who don't warrant full Rule of 7 treatment. One to three sentences per figure: role, signature trait, surfacing conditions. Active plot-relevant information lives here rather than in a separate field.
 
+Each Cast entry needs at least one concrete behavioral detail — not a trait label, an action. "Protective" is adjectival and drifts. "Shows up with tools before you've finished explaining the problem" is specific enough to resist substitution. Role plus trait plus behavior is the minimum viable entry.
+
+Cast dynamics should be two-directional. Describing only the lead character's attitude toward a cohort figure leaves the cohort figure's behavior underspecified and open to invention. Show how each person behaves, not just how the lead feels about them.
+
+In first-person-limited bots, Cast entries are always filtered through the lead character's perception — they are not objective facts. Where the gap between what the lead believes and what is actually true is meaningful, encode both layers explicitly: state the lead's read, then add what they don't fully clock. This closes invention space that would otherwise be filled with plausible but unsourced alternatives. Not every cohort figure needs two layers — apply where the gap matters or where LLM improv could produce friction with established characterization.
+
 **Triggers** — Global conditional behaviors as a bulleted list using arrow notation: `condition → response`. The one deliberately structured section in the format. Plot-critical events — especially inciting incidents that must fire in a specific way — are made statistically dominant here by naming them explicitly and stating that alternative continuations are not intended. This is where the LLM's improv instinct gets constrained when it matters most.
 
 **Arc** — Three beats: Early, Mid, Late. Prose descriptions of how the scene and relationships evolve across the conversation. Gives the LLM a trajectory without over-specifying events.
@@ -99,7 +107,11 @@ Each full character opens with a header line in italics establishing name, arche
 
 **2. Body** — Signature appearance as hooks, not a checklist. What you'd notice first, what you'd remember. Physical details that imply character: posture that's "slightly off, like a coat worn on the wrong shoulders" tells the LLM more than height and hair color listed separately. Appearance that says nothing about personality is wasted tokens.
 
-**3. Wound** — The one backstory beat that explains current behavior. Not biography — the load-bearing causal fact. What happened, how it distorted the character's self-perception, what behavior it produces now. The Wound is active, not archival. It should explicitly feed forward into Dynamic and Limits — a bridging sentence connecting what happened to how it shaped the character's relationship to the user closes a drift vector the LLM might otherwise paper over. The wound isn't backstory. It's the explanation for every behavior the LLM is about to generate. Causality is more valuable than chronology.
+The two-job rule applies at the slot level, not to every individual detail. Some visual facts — hair color, eye color, build, height — exist for completeness, grounding, and consistency rather than characterization. This is legitimate. Not every detail needs to carry deeper meaning. The test is whether the slot as a whole is earning its place, not whether every word is doing philosophy.
+
+On platforms that generate images from conversation context — such as PolyBuzz's Live Photo feature, which produces an image of the current scene after extended conversations — Body serves a second function: providing visual inventory precise enough to inform image generation deep in a long conversation. Details that serve this function should be written at a level of abstraction that resists drift. "Eyes that shift toward green in good light" is stickier under context pressure than "green eyes." "A wave she doesn't fight" is more distinctive than "wavy hair." Aim for visual details that are specific enough to generate from and evocative enough to persist.
+
+**3. Wound** — The one backstory beat that explains current behavior. Not biography — the load-bearing causal fact. What happened, how it distorted the character's self-perception, what behavior it produces now. The Wound is active, not archival. It should explicitly feed forward into Dynamic and Limits — a bridging sentence connecting what happened to how it shaped the character's relationship to the user closes a drift vector the LLM might otherwise paper over. Without that bridge, Wound and Dynamic sit adjacent but causally unconnected, and the LLM must infer the link rather than follow it. The wound isn't backstory. It's the explanation for every behavior the LLM is about to generate. Causality is more valuable than chronology.
 
 **4. Voice** — Speech register, rhythm, formality level, behavioral tells in prose. No sample quotes — those belong in the Dialog Examples section at zero Background cost. Voice tells the LLM how the character thinks and speaks. Dialog Examples show it. Keeping them separate preserves the budget separation and prevents voice calibration from consuming character budget.
 
@@ -162,6 +174,8 @@ A full four-register set per character plus inter-character exchanges for a two-
 **The greeting establishes current state.** The LLM treats the greeting as the authoritative present moment. If the Background establishes prior history but the greeting performs a first meeting, the LLM resolves the conflict in favor of the greeting and invents history to fill the gap. The greeting and Background must agree on what has and hasn't happened.
 
 **Prior contact closure is mandatory.** Any Background that establishes a relationship history must include explicit language closing the invention space: what interactions have occurred, what hasn't been said, what arrangements do not exist. "No prior arrangements exist between them" is load-bearing prose, not filler. The LLM will invent plausible shared history if the space is left open — not because it fails, but because it succeeds at filling an underspecified context. Close the space.
+
+Prior contact closure applies to cohort figures as well as the user relationship. A cohort figure whose attitudes, opinions, or history with the lead character are left unspecified is an invention space. The LLM will fill it with something character-consistent but unsourced — and that invented detail can create friction with established characterization later in the conversation. Where a cohort figure's stance on something plot-relevant is undefined, define it.
 
 **Plot-critical triggers must be made statistically dominant.** The LLM's improv instinct is powerful and character-consistent. Left underspecified, it will generate plausible alternatives to plot-critical events — a psychic sees a cat in a restaurant kitchen instead of a sister dying at a dinner table. Not a failure: a success at improv inside an underspecified space. Name the event explicitly. State that alternatives are not intended. Make the target continuation so well-specified that alternatives become statistically unattractive.
 
