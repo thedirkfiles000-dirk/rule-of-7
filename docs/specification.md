@@ -11,6 +11,8 @@ An LLM doesn't parse — it reads. It was trained on an enormous corpus of liter
 
 The Rule of 7 replaces structured scaffolding with disciplined prose. Every sentence earns its place by increasing predictive power — reducing uncertainty about how the character will behave in future generations. The format is designed to be read by an intelligent collaborator, not executed by a processor.
 
+**Prose is also easier to repair.** When something goes wrong in a JSON or XML schema — a filter violation, a character drift, an invented fact — the repair requires navigating nested structures, identifying which field owns the problem, and verifying the change doesn't break downstream dependencies. In a prose document, the repair is proportional to the problem: change a word, cut a sentence, swap a paragraph. The edit is surgical because the format is continuous. There are no structures to negotiate, no labels to maintain, no grammar to satisfy. This advantage compounds over time — a bot that gets tested and refined iteratively stays manageable in prose form long after an equivalent schema would have become brittle.
+
 The density target: a three or four character ensemble with full world-building inside a single 10,000 character Background field. Not by cutting content — by cutting overhead.
 
 ---
@@ -189,7 +191,17 @@ A full four-register set per character plus inter-character exchanges for a two-
 
 **Do not use format taxonomy as prompt language.** Words like "cohort," "trigger," "slot," and "arc" are authoring vocabulary — they describe the format, not the fiction. They do not belong inside the Background field. The LLM doesn't need the author's taxonomy; it needs characterization. "Wendy (cohort)" in a Cast entry tells the LLM nothing useful and wastes tokens on a label that serves only the author.
 
-**Ambiguity is a valid design choice — encode it explicitly.** The spec's emphasis on closing invention spaces does not mean every character must have clean, resolvable motivations. Some characters are more interesting because their motivations are genuinely mixed — they want two things that may conflict, and neither fully explains their behavior. This kind of ambiguity should be encoded deliberately: state both things as true simultaneously and let the prose hold the tension. "She tells herself the two things are separate — what she feels and what she wants professionally — and she's mostly convinced" is closed invention space that produces open dramatic space. The LLM knows what Wendy's ambiguity consists of; the user gets to decide what it means.
+**Invention space is a design tool, not a failure mode.** The format's emphasis on closing invention spaces can read as "close everything" if taken too literally. That would produce a bot that is deterministic rather than alive — a puzzle with one correct solution rather than a situation that plays differently every time.
+
+The distinction is between gaps that produce wrong answers and gaps that produce interesting variation. Close the first kind. Leave the second kind deliberately open.
+
+*Gaps that produce wrong answers* — a cohort figure drifting to a generic archetype, a character inventing prior contact that contradicts established facts, a trigger response that could mean anything. These undermine dramatic logic and break continuity. Close them with specificity, prior contact closure, and named trigger responses.
+
+*Gaps that produce interesting variation* — what a character's client actually wants from them, how a particular conversation unfolds on any given playthrough, which of two true motivations is dominant on a particular day. These generate replayability, surprise, and the sense that the character is alive rather than scripted. Leave them open by design.
+
+The test is not "is this specified?" It is "does leaving this open produce wrong answers or interesting ones?" A character whose every response is predetermined is not a character — it is a recording. The goal is a character who surprises the user in ways consistent with who they are. That requires the right invention spaces to exist and the wrong ones to be closed. Wielding invention space correctly is as much a design skill as closing it.
+
+**Encoded ambiguity is a specific technique within this framework.** Some characters are more interesting because their motivations are genuinely mixed — they want two things that may conflict, and neither fully explains their behavior. This is not an open invention space; it is a deliberately constructed both-things-are-true-simultaneously construction the LLM can deploy accurately. "She tells herself the two things are separate — what she feels and what she wants professionally — and she's mostly convinced" gives the LLM a specific, bounded ambiguity to work with. The user gets to decide what it means. The LLM isn't inventing — it's deploying an ambiguity the author encoded on purpose. Open invention space is a gap. Encoded ambiguity is a tool.
 
 **The Intro field is a live LLM input.** Testing on PolyBuzz confirms the Intro is read by the LLM, not just displayed to browsing users. It functions as an unprompted mini-premise that the LLM may treat as ground truth before the greeting fires. Intros require dual-audience authoring: compelling enough to sell the bot to a human browser, precise enough not to contradict the Background or greeting. A poorly written Intro can establish a false prior state before the conversation even begins.
 
