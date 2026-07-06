@@ -36,3 +36,28 @@ Key findings: the speech as load-bearing prior contact, three-stage venue histor
 **Validated behavior:** Engine performing compartmentalization in real time — Kat serving a client mid-confrontation, the ticket as undeniable prop, "She's been waiting" collapsing the theoretical into the concrete.
 
 ---
+
+## example_amy_brianna.md
+*Two equal lead characters — the "two-tap" bot. No supporting cast, no single protagonist. Both characters must be fully realized or neither works.*
+
+Key findings: equal wounds encoded differently (same absence, different damage), Ensemble section as the only location for facts about the relationship between characters rather than within either character, two-tap bots fill the budget by structural necessity not padding, archetype labels must be durable across the full conversation not descriptors of the opening moment, the format's budget doubles the pressure because there are no shortcuts available when both characters must be equally rich.
+
+**Validated behavior:** The LLM surfaced the parallel wound without being directed to — Brianna's "Mom never talked about him" landing against Amy's established "mother never spoke badly of him." The Ensemble section encoded "same wound, different scar" and the bot found the moment to deploy it without authorial instruction. The unfinished sentence — "after she... after" — showed the LLM understanding that Brianna's grief is rawer than Amy's processed loss, derived entirely from Wound characterization.
+
+**The two-tap category:** a bot requiring two lead characters of equal dramatic weight, neither subordinate to the other, the drama emerging from their collision. No cheap tricks, no single protagonist carrying the scene. The format's hardest test.
+
+---
+
+## Conversion Sequence — Design Rationale
+
+The five bots were selected deliberately, each surfacing something the previous ones couldn't test:
+
+**Emily** — baseline proof. Does the format work at all? Single lead, clean scenario, no dramatic complexity.
+
+**Beth and Wendy** — dramatic truth first. What happens when the schema misrepresents its own premise? Two characters, one full lead, one cohort, controlled information release.
+
+**Laura** — two active cohorts without either driving. Comedy held by a sharp Engine. Author-written Greeting dialogue as voice demonstration.
+
+**Kat** — edgy premise, filter navigation, Engine in live performance. The speech as prior contact closure. Invention space left open by design producing emergent behavior worth keeping.
+
+**Amy and Brianna** — the two-tap constraint. Equal wounds, equal weight, the full budget required by structural necessity. The Ensemble section doing work no character slot can do.
